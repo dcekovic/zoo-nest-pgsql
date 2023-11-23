@@ -2,11 +2,15 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import typeorm from './infrastructure/config/typeorm';
-import { AuthModule } from './auth/auth.module';
+import { ControllersModule } from './infrastructure/controllers/controllers.module';
+import { UseCasesModule } from './usecases/usecases.module';
+import { RepositoriesModule } from './infrastructure/repositories/repositories.module';
 
 @Module({
   imports: [
-    AuthModule,
+    ControllersModule,
+    UseCasesModule,
+    RepositoriesModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [typeorm],
